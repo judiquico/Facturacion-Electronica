@@ -9,18 +9,17 @@
     </head>
     <body>
     <center>
-        <%        %>    
 
         <form name="empresa" method="post" action="listar.jsp" ><br /> 
             Nit: <input type="text" name="nit" /><br />
             <br />
             Regimen Contributivo: <select name="regimen"> 
                 <option>Simplificado</option>
-                <option>Común</option>
+                <option>Comun</option>
                 <option>Prima media con prestación definida</option>
                 <option>Legal vigente</option>
                 <option>Especial</option>
-                <option>ahorro individual con solidaridad</option>
+                <option>Ahorro individual con solidaridad</option>
             </select><br />
             <br />
             Nombre Empresa: <input type="text" name="empresa" /><br />
@@ -47,6 +46,9 @@
             <br />
             Apellido Representante: <input type="text" name="apellido_represen" /><br />
             <br />
+            <br />
+            Correo Electronico: <input type="text" name="correo_electronico" /><br />
+            <br />
             <input type="submit" value="Guardar"><br />
         </form>
 
@@ -64,15 +66,16 @@
             String cedula = request.getParameter("cedula");
             String nombre_represen = request.getParameter("nombre_represen");
             String apellido_represen = request.getParameter("apellido_represen");
+            String correo_electronico = request.getParameter("correo_electronico");
 
             if (nit != null && regimen != null && empresa != null && pais != null && departamento != null && ciudad != null && logo != null && resolucion != null && direccion != null && telefono != null && registro != null && cedula != null && nombre_represen != null && apellido_represen != null) {
-                String insertar = "INSERT INTO empresa (NIT_EMPRESA,REGIMEN_CONTRIBUTIVO,NOMBRE_COMERCIAL,PAIS,DEPARTAMENTO,CIUDAD,LOGO,RESOLUCION_DIAN,DIRECCION,TELEFONO,NOMBRE_REGISTRO,IDENTIFICACION_REPRESENTANTE,NOMBRE_REPRESENTANTE,APELLIDO_REPRESENTANTE)VALUES('" + nit + "','" + regimen + "','" + empresa + "','" + pais + "','" + departamento + "', '" + ciudad + "','" + logo + "','" + resolucion + "','" + direccion + "','" + telefono + "','" + registro + "','" + cedula + "','" + nombre_represen + "','" + apellido_represen + "')  ";
-                String insertUser = "INSERT INTO representante(cedula,usuario,contrasena)VALUES('" + cedula + "','" + nit + "','" + cedula + "')";
+                String insertar = "INSERT INTO empresa(NIT_EMPRESA,REGIMEN_CONTRIBUTIVO,NOMBRE_COMERCIAL,PAIS,DEPARTAMENTO,CIUDAD,LOGO,RESOLUCION_DIAN,DIRECCION,TELEFONO,NOMBRE_REGISTRO,IDENTIFICACION_REPRESENTANTE,NOMBRE_REPRESENTANTE,APELLIDO_REPRESENTANTE,CORREO_REPRESENTANTE)VALUES('" + nit + "','" + regimen + "','" + empresa + "','" + pais + "','" + departamento + "', '" + ciudad + "','" + logo + "','" + resolucion + "','" + direccion + "','" + telefono + "','" + registro + "','" + cedula + "','" + nombre_represen + "','" + apellido_represen + "','" + correo_electronico + "')";
+                String insertUser = "INSERT INTO representante(identificacion_representante,usuario,password)VALUES('" + cedula + "','" + correo_electronico + "','" + nit + "')";
                 st = conn.createStatement();
                 st.executeUpdate(insertar);
                 st.executeUpdate(insertUser);
 
-                out.print("registro exitoso!!  usuario/apellido y contarseña/cedula creados");
+                out.print("registro exitoso!!  Usuario/"+ correo_electronico + " y contarseña/" + nit +" creados");
             } else {
                 out.print("complete todos los campos!! ");
             }
