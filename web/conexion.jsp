@@ -22,9 +22,9 @@
           Class.forName("com.mysql.jdbc.Driver");
           conn = (Connection)DriverManager.getConnection(url,us,pass);
           st = conn.createStatement();
-//          out.println("Conexion en Linea ...");
+          out.println("Conexion en Linea ...");
         }catch(Exception ex){
-//           out.println("Error en la conexion! ... intente mas tarde."); 
+           out.println("Error en la conexion! ... Intente mas tarde."); 
         }
         %>
         

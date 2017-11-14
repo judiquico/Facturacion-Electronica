@@ -75,7 +75,7 @@
                 st.executeUpdate(insertar);
                 st.executeUpdate(insertUser);
 
-                out.print("registro exitoso!!  Usuario/"+ correo_electronico + " y contarseña/" + nit +" creados");
+                out.print("Registro exitoso!!  Usuario/"+ correo_electronico + " y contarseña/" + nit +" creados");
             } else {
                 out.print("complete todos los campos!! ");
             }
